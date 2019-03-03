@@ -46,6 +46,10 @@ class MainWnd(QtWidgets.QMainWindow, lr3.Ui_MainWindow):
         self.__cellSimple(text, cell, font, ws)
         ws[cell].alignment = Alignment(horizontal="center", vertical='center')
 
+    def __cellLeft(self, text, cell, font, ws):
+        self.__cellSimple(text, cell, font, ws)
+        ws[cell].alignment = Alignment(horizontal="left", vertical='top')
+
     def __cellSimple(self, text, cell, font, ws):
         ws[cell] = text
         ws[cell].font = Font(size=font)
@@ -86,6 +90,62 @@ class MainWnd(QtWidgets.QMainWindow, lr3.Ui_MainWindow):
 
         ws.merge_cells('BR' + str(row) + ':BX' + str(row))
         self.__cellCenter(dataRow[11], 'BR' + str(row), 10, ws)
+
+    def __allFightCount(self, rowStart, rowEnd):
+        i = rowStart
+        count = 0
+        while i < rowEnd:
+            count += self.tblFight.cellWidget(i, 1).value()
+            i += 1
+        return count
+
+    def __allFightPrice(self, rowStart, rowEnd):
+        i = rowStart
+        count = 0
+        while i < rowEnd:
+            count += int(self.tblFight.item(i, 2).text())
+            i += 1
+        return count
+
+    def __allLostCount(self, rowStart, rowEnd):
+        i = rowStart
+        count = 0
+        while i < rowEnd:
+            count += self.tblLost.cellWidget(i, 1).value()
+            i += 1
+        return count
+
+    def __allLostPrice(self, rowStart, rowEnd):
+        i = rowStart
+        count = 0
+        while i < rowEnd:
+            count += int(self.tblLost.item(i, 2).text())
+            i += 1
+        return count
+
+    def __allLostFightCount(self, rowStart, rowEnd):
+        return self.__allFightCount(rowStart, rowEnd) + self.__allLostCount(rowStart, rowEnd)
+
+    def __allLostFightPrice(self, rowStart, rowEnd):
+        return self.__allFightPrice(rowStart, rowEnd) + self.__allLostPrice(rowStart, rowEnd)
+
+    def __fillTblEmptyForm(self, strStar, strEnd, ws):
+        while strStar < strEnd:
+            self.MakeRow(strStar, [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+            ], ws)
+            strStar += 1
 
     def __exportData(self):
         #wb = load_workbook(filename = 'forma-op-8.xlsx')
@@ -227,8 +287,33 @@ class MainWnd(QtWidgets.QMainWindow, lr3.Ui_MainWindow):
         self.__cellCenter(self.position.text(), "U18", 11, ws)
         self.__cellCenter(self.FIO.text(), "AM18", 11, ws)
 
-        rowStart = 27
-        for row in range(self.tblMain.rowCount()):
+        self.MakeRow(27, [
+            str(1),
+            str(2),
+            str(3),
+            str(4),
+            str(5),
+            str(6),
+            str(7),
+            str(8),
+            str(9),
+            str(10),
+            str(11),
+            str(12),
+        ], ws)
+
+        rowStart = 28
+
+        baseDiv = 10
+        rowDiv = baseDiv
+        if self.tblMain.rowCount() > rowDiv * 2:
+            rowDiv = int(self.tblMain.rowCount() / 2)
+        elif rowDiv >= self.tblMain.rowCount():
+            rowDiv = self.tblMain.rowCount()
+
+
+
+        for row in range(rowDiv):
             self.MakeRow(rowStart + row, [
                 str(row + 1),
                 self.tblMain.cellWidget(row, 0).currentText(),
@@ -244,6 +329,180 @@ class MainWnd(QtWidgets.QMainWindow, lr3.Ui_MainWindow):
                 str(self.tblMain.cellWidget(row, 3).toPlainText()),
             ], ws)
 
+        if rowDiv < baseDiv:
+            self.__fillTblEmptyForm(rowStart + rowDiv, rowStart + baseDiv, ws)
+
+        self.MakeRow(rowStart + baseDiv, [
+            "",
+            "",
+            "",
+            "Итого",
+            str(self.__allFightCount(0, rowDiv)),
+            str(self.__allFightPrice(0, rowDiv)),
+            str(self.__allLostCount(0, rowDiv)),
+            str(self.__allLostPrice(0, rowDiv)),
+            str(self.__allLostFightCount(0, rowDiv)),
+            str(self.__allLostFightPrice(0, rowDiv)),
+            "",
+            "",
+        ], ws)
+
+        row = rowStart + baseDiv + 1
+
+        ws.merge_cells('BE' + str(row) + ':BX' + str(row))
+        self.__cellCenter('Оборотная сторона формы № ОП-8', 'BE' + str(row), 11, ws)
+
+        row += 2
+
+        ws.merge_cells('A' + str(row) + ':D' + str(row + 5))
+        ws.merge_cells('E' + str(row) + ':S' + str(row + 1))
+        ws.merge_cells('E' + str(row + 2) + ':N' + str(row + 5))
+        ws.merge_cells('O' + str(row + 2) + ':S' + str(row + 5))
+        ws.merge_cells('T' + str(row) + ':Y' + str(row + 5))
+        ws.merge_cells('Z' + str(row) +':AZ' + str(row + 1))
+        ws.merge_cells('Z' + str(row + 2) + ':AH' + str(row + 2))
+        ws.merge_cells('AI' + str(row + 2) + ':AQ' + str(row + 2))
+        ws.merge_cells('AR' + str(row + 2) + ':AZ' + str(row + 2))
+        ws.merge_cells('Z' + str(row + 3) + ':AC' + str(row + 5))
+        ws.merge_cells('AD' + str(row + 3) + ':AH' + str(row + 5))
+        ws.merge_cells('AI' + str(row + 3) + ':AL' + str(row + 5))
+        ws.merge_cells('AM' + str(row + 3) + ':AQ' + str(row + 5))
+        ws.merge_cells('AR' + str(row + 3) + ':AU' + str(row + 5))
+        ws.merge_cells('AV' + str(row + 3) + ':AZ' + str(row + 5))
+        ws.merge_cells('BA' + str(row) + ':BQ' + str(row + 5))
+        ws.merge_cells('BR' + str(row) + ':BX' + str(row + 5))
+        self.__cellCenter("Но-\nмер\nпо по-\nрядку", "A" + str(row), 10, ws)
+        self.__cellCenter("Посуда, приборы", "E" + str(row), 10, ws)
+        self.__cellCenter("наименование", "E" + str(row + 2), 10, ws)
+        self.__cellCenter("код", "O" + str(row + 2), 10, ws)
+        self.__cellCenter("Цена,\nруб. коп.", "T" + str(row), 10, ws)
+        self.__cellCenter("Бой, лом, утрачено, пропало", "Z" + str(row), 10, ws)
+        self.__cellCenter("бой, лом ", "Z" + str(row + 2), 10, ws)
+        self.__cellCenter("утрачено, пропало", "AI" + str(row + 2), 10, ws)
+        self.__cellCenter("всего", "AR" + str(row + 2), 10, ws)
+        self.__cellCenter("коли-\nчество,\nшт.", "Z" + str(row + 3), 10, ws)
+        self.__cellCenter("сумма,\nруб. коп.", "AD" + str(row + 3), 10, ws)
+        self.__cellCenter("коли-\nчество,\nшт.", "AI" + str(row + 3), 10, ws)
+        self.__cellCenter("сумма,\nруб. коп.", "AM" + str(row + 3), 10, ws)
+        self.__cellCenter("коли-\nчество,\nшт.", "AR" + str(row + 3), 10, ws)
+        self.__cellCenter("сумма,\nруб. коп.", "AV" + str(row + 3), 10, ws)
+        self.__cellCenter("Обстоятельства\nбоя, лома, утраты, пропажи.\nВиновные лица\n(должность, фамилия, и., о.)",
+                          "BA" + str(row), 10, ws)
+        self.__cellCenter("Примечание", "BR" + str(row), 10, ws)
+
+        row += 6
+        self.MakeRow(row, [
+            str(1),
+            str(2),
+            str(3),
+            str(4),
+            str(5),
+            str(6),
+            str(7),
+            str(8),
+            str(9),
+            str(10),
+            str(11),
+            str(12),
+        ], ws)
+        row += 1
+        i = self.tblMain.rowCount() - rowDiv
+        startI = i
+        endI = self.tblMain.rowCount()
+        if i > 0:
+            while i < endI:
+                self.MakeRow(i + row - startI, [
+                    str(i + 1),
+                    self.tblMain.cellWidget(i, 0).currentText(),
+                    str(self.tblMain.cellWidget(i, 1).value()),
+                    str(self.tblMain.cellWidget(i, 2).value()),
+                    str(self.tblFight.cellWidget(i, 1).value()),
+                    str(self.tblFight.item(i, 2).text()),
+                    str(self.tblLost.cellWidget(i, 1).value()),
+                    str(self.tblLost.item(i, 2).text()),
+                    str(self.tblLost.item(i, 4).text()),
+                    str(self.tblLost.item(i, 5).text()),
+                    str(self.tblFight.cellWidget(i, 3).toPlainText()) + ", " + str(
+                        self.tblLost.cellWidget(i, 3).toPlainText()),
+                    str(self.tblMain.cellWidget(i, 3).toPlainText()),
+                ], ws)
+                i += 1
+            self.MakeRow(row + baseDiv, [
+                "",
+                "",
+                "",
+                "Итого",
+                str(self.__allFightCount(startI, endI)),
+                str(self.__allFightPrice(startI, endI)),
+                str(self.__allLostCount(startI, endI)),
+                str(self.__allLostPrice(startI, endI)),
+                str(self.__allLostFightCount(startI, endI)),
+                str(self.__allLostFightPrice(startI, endI)),
+                "",
+                "",
+            ], ws)
+        else:
+            self.__fillTblEmptyForm(row, row  + baseDiv, ws)
+            self.MakeRow(row + baseDiv, [
+                "",
+                "",
+                "",
+                "Итого",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+            ], ws)
+
+        self.MakeRow(row + baseDiv + 1, [
+            "",
+            "",
+            "",
+            "Всего",
+            str(self.__allFightCount(0, endI)),
+            str(self.__allFightPrice(0, endI)),
+            str(self.__allLostCount(0, endI)),
+            str(self.__allLostPrice(0, endI)),
+            str(self.__allLostFightCount(0, endI)),
+            str(self.__allLostFightPrice(0, endI)),
+            "",
+            "",
+        ], ws)
+
+        row += baseDiv + 2
+        self.__cellSimple("Перечисленные в графе «Бой, лом» столовая посуда и приборы в количестве", 'A' + str(row), 10, ws)
+        ws.merge_cells('AI' + str(row) + ':BF' + str(row))
+        self.__cellCenter(str(self.cntCrushSee.value()), 'AI' + str(row), 10, ws)
+        self.__cellSimple("шт. уничтожены в нашем присутствии", 'BG' + str(row), 10, ws)
+        row += 1
+        ws.merge_cells('AI' + str(row) + ':BF' + str(row))
+        self.__cellCenter("(печатно)", 'AI' + str(row), 10, ws)
+        row += 2
+        self.__cellCenter("Члены комиссии:", 'E' + str(row), 10, ws)
+        row += 1
+        for rowTbl in range(self.tblCommis.rowCount()):
+            ws.merge_cells('N' + str(row) + ':AB' + str(row))
+            self.__cellCenter(str(self.tblCommis.cellWidget(rowTbl, 0).toPlainText()), 'N' + str(row), 10, ws)
+            ws.merge_cells('AD' + str(row) + ':AO' + str(row))
+            ws.merge_cells('AQ' + str(row) + ':BO' + str(row))
+            self.__cellCenter(str(self.tblCommis.cellWidget(rowTbl, 1).toPlainText()), 'AQ' + str(row), 10, ws)
+            row += 1
+            ws.merge_cells('N' + str(row) + ':AB' + str(row))
+            self.__cellCenter('(должность)', 'N' + str(row), 8, ws)
+            ws.merge_cells('AD' + str(row) + ':AO' + str(row))
+            self.__cellCenter('(подпись)', 'AD' + str(row), 8, ws)
+            ws.merge_cells('AQ' + str(row) + ':BO' + str(row))
+            self.__cellCenter('(расшифровка подписи)', 'AQ' + str(row), 8, ws)
+            row += 1
+
+        row += 1
+        self.__cellSimple("Решение администрации:", 'A' + str(row), 10, ws)
+        ws.merge_cells('A' + str(row + 1) + ':BX' + str(row + 5))
+        self.__cellLeft(str(self.adminDecis.toPlainText()), 'A' + str(row  +1), 10, ws)
 
         wb.save("reportOP8.xlsx")
 
