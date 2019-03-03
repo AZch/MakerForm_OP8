@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>799</width>
+    <height>556</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ОП-8</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>771</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tabHead">
+     <attribute name="title">
+      <string>Шапка</string>
+     </attribute>
+     <widget class="QLineEdit" name="position">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>581</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Должность</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>251</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Материально ответственное лицо:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="FIO">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>581</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ф.И.О</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>301</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Руководитель:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="headPosition">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>581</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Должность</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="headFullName">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>581</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Расшифровка подписи</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_19">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>10</y>
+        <width>141</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Дата создания</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="dateCreate">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>30</y>
+        <width>131</width>
+        <height>26</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>50</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Отчетный период</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>70</y>
+        <width>20</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>С</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="reportForm">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>70</y>
+        <width>110</width>
+        <height>26</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>90</y>
+        <width>20</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>По</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="reportOn">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>90</y>
+        <width>110</width>
+        <height>26</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>120</y>
+        <width>141</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Вид операции</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="typeOperation">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>140</y>
+        <width>131</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabMain">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <attribute name="title">
+      <string>Главная</string>
+     </attribute>
+     <widget class="QTableWidget" name="tblMain">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>771</width>
+        <height>261</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Наименование</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Код</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Цена, руб. коп.</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Примечание</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Кол-во всего</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Сумма всего</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Удалить</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabFight">
+     <attribute name="title">
+      <string>Бой, лом</string>
+     </attribute>
+     <widget class="QTableWidget" name="tblFight">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>771</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Наименование</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Кол-во</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Сумма, руб. коп.</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Обстоятельство</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Кол-во всего</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Сумма всего</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Удалить</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabLost">
+     <attribute name="title">
+      <string>Утрачено, пропало</string>
+     </attribute>
+     <widget class="QTableWidget" name="tblLost">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>771</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Наименование</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Кол-во</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Сумма, руб. коп.</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Обстоятельство</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Кол-во всего</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Сумма всего</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Удалить</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabFut">
+     <attribute name="title">
+      <string>Заключение</string>
+     </attribute>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>561</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Перечисленные в графе &quot;Бой, лом&quot; столовая посуда и приборы в количестве</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>30</y>
+        <width>281</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>шт. уничтожены в нашем пристуствии</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="cntCrushSee">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>71</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>131</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Члены комиссии:</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tblCommis">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>431</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Должность</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Расшифровка подписи</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Удалить</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>60</y>
+        <width>191</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Решение администрации</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="adminDecis">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>80</y>
+        <width>301</width>
+        <height>171</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>101</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Организация:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>211</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Структурное подразделение:</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dateEditAct">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>10</y>
+      <width>131</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Акт №</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>10</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Дата</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>60</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ОКПО</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="numOrg">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>80</y>
+      <width>131</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>999999999</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>160</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ОКДП</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="OKDP">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>160</y>
+      <width>131</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>999999999</number>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cmbOrg">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>631</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_21">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>110</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ОКПО</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="numStruct">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>130</y>
+      <width>131</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>999999999</number>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cmbStruct">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>631</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exportExcel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>480</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Экспорт</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exit">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>480</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Выход</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>40</y>
+      <width>341</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>О БОЕ, ЛОМЕ И УТРАТЕ ПОСУДЫ И ПРИБОРОВ</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="numAct">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>131</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>999999999</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>799</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
